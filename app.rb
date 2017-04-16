@@ -13,5 +13,6 @@ class Master < ActiveRecord::Base
 end
 
 get '/' do
+	@masters=Master.all
 	erb :index
 end
