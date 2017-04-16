@@ -12,6 +12,9 @@ end
 class Master < ActiveRecord::Base
 end
 
+class Contact < ActiveRecord::Base
+end
+
 before do
 	@masters=Master.order "created_at DESC"
 end
@@ -31,7 +34,7 @@ post '/visit' do
 	@master = params[:master]
 	@color = params[:color]
 
-
+	Client.create :name => @username, :phones => @phone, :datestamp => @time, :barber => @master, :color => @color
 
 	erb "<div class='alert alert-success'>Thanks #{@username}! #{@master} is waiting you at #{@time}.</div>"
 end
