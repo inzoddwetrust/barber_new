@@ -12,7 +12,26 @@ end
 class Master < ActiveRecord::Base
 end
 
-get '/' do
+before do
 	@masters=Master.order "created_at DESC"
+end
+
+get '/' do
 	erb :index
+end
+
+get '/visit' do
+		erb :visit
+end
+
+post '/visit' do
+	@username = params[:username]
+	@phone = params[:phone]
+	@time = params[:time]
+	@master = params[:master]
+	@color = params[:color]
+
+
+
+	erb "<div class='alert alert-success'>Thanks #{@username}! #{@master} is waiting you at #{@time}.</div>"
 end
