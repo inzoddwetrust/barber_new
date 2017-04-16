@@ -38,3 +38,16 @@ post '/visit' do
 
 	erb "<div class='alert alert-success'>Thanks #{@username}! #{@master} is waiting you at #{@time}.</div>"
 end
+
+get '/contacts' do
+	erb :contacts
+end
+
+post '/contacts' do
+	@email = params[:email]
+	@message = params[:message]
+
+	Contact.create :email => @email, :message => @message
+
+	erb "<div class='alert alert-success'>Thanks! We will answer you to #{@email} soon.</div>"
+end
