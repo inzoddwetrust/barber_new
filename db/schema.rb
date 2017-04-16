@@ -12,12 +12,14 @@
 
 ActiveRecord::Schema.define(version: 20170415235154) do
 
-  create_table "client", force: :cascade do |t|
-    t.text "name"
-    t.text "phones"
-    t.text "datestamp"
-    t.text "barber"
-    t.text "color"
+  create_table "clients", force: :cascade do |t|
+    t.text     "name"
+    t.text     "phones"
+    t.text     "datestamp"
+    t.text     "barber"
+    t.text     "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "masters", force: :cascade do |t|
