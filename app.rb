@@ -13,6 +13,6 @@ class Master < ActiveRecord::Base
 end
 
 get '/' do
-	@masters=Master.all
+	@masters=Master.order "created_at DESC"
 	erb :index
 end
