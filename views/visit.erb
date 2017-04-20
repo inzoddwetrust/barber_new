@@ -6,30 +6,30 @@
 
     <div class="form-group">
       <label>Your name</label>
-      <input name="username" type="text" class="form-control" placeholder="Name" value="<%= @username%>">
+      <input name="client[name]" type="text" class="form-control" placeholder="Name">
     </div>
 
     <div class="form-group">
       <label>Contact phone number</label>
-      <input name="phone" type="text" class="form-control" placeholder="Phone" value="<%= @phone%>">
+      <input name="client[phones]" type="text" class="form-control" placeholder="Phone">
     </div>
 
     <div class="form-group">
       <label>Date of visit</label>
-      <input id="datetime" name="time" type="text" class="form-control" placeholder="Date and time" value="<%= @time%>">
+      <input id="datetime" name="client[datestamp]" type="text" class="form-control" placeholder="Date and time">
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label>Choose the master:</label>
       <select name="master" class="form-control">
         <%@masters.each do |master|%>
           <option <%= @master == master.name ? "selected" : ""%>><%= master.name%></option>
         <% end%>
       </select>
-    </div>
+    </div> -->
 
     <div>
-      <select id="color" name="color">
+      <select id="color" name="client[color]">
         <option value="#7bd148">Green</option>
         <option value="#5484ed">Bold blue</option>
         <option value="#a4bdfc">Blue</option>

@@ -3,10 +3,13 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
 
-
 set :database, "sqlite3:main.db"
 
 class Client < ActiveRecord::Base
+	validates :name, {presence: true}
+	validates :phones, {presence: true}
+	validates :datestamp, {presence: true}
+	validates :color, {presence: true}
 end
 
 class Master < ActiveRecord::Base
@@ -28,15 +31,11 @@ get '/visit' do
 end
 
 post '/visit' do
-	@username = params[:username]
-	@phone = params[:phone]
-	@time = params[:time]
-	@master = params[:master]
-	@color = params[:color]
 
-	Client.create :name => @username, :phones => @phone, :datestamp => @time, :barber => @master, :color => @color
+	c = Client.new params[:client]
+	c.save
 
-	erb "<div class='alert alert-success'>Thanks #{@username}! #{@master} is waiting you at #{@time}.</div>"
+	erb "<div class='alert alert-success'>Thanks #{c.name}! #{nil} is waiting you at #{c.datestamp}.</div>"
 end
 
 get '/contacts' do
