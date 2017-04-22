@@ -1,0 +1,10 @@
+<h2>Client's list</h2>
+
+<%@bookings.each do |client|%>
+<p>Name: <%=client.name%></p>
+<p>Phone: <%=client.phones%></p>
+<p>Date and time: <%=client.datestamp%></p>
+<p>Master: <%=client.barber%></p>
+<p>Color: <%=client.color%></p>
+<br>
+<%end%>

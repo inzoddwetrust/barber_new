@@ -31,6 +31,16 @@ get '/' do
 	erb :index
 end
 
+get '/barber/:id' do
+		@barber = Master.find params[:id]
+		erb :barber
+end
+
+get '/bookings' do
+	@bookings = Client.all
+erb :bookings
+end
+
 get '/visit' do
 		@c = Client.new
 		erb :visit

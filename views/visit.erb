@@ -19,14 +19,14 @@
       <input id="datetime" name="client[datestamp]" type="text" class="form-control" value="<%=@c.datestamp%>" placeholder="Date and time">
     </div>
 
-    <!-- <div class="form-group">
+    <div class="form-group">
       <label>Choose the master:</label>
-      <select name="master" class="form-control">
+      <select name="client[barber]" class="form-control">
         <%@masters.each do |master|%>
-          <option <%= @master == master.name ? "selected" : ""%>><%= master.name%></option>
+          <option <%= master.name == @c.barber ? "selected" : ""%>><%= master.name%></option>
         <% end%>
       </select>
-    </div> -->
+    </div>
 
     <div>
       <select id="color" name="client[color]">
