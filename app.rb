@@ -20,6 +20,11 @@ end
 
 before do
 	@masters=Master.order "created_at DESC"
+	@errors_list = {
+									"Name can't be blank" => "Введите имя",
+									"Phones can't be blank" => "Введите телефон",
+									"Datestamp can't be blank" => "Выберите дату визита"
+									}
 end
 
 get '/' do
@@ -32,10 +37,14 @@ end
 
 post '/visit' do
 
-	c = Client.new params[:client]
-	c.save
-
-	erb "<div class='alert alert-success'>Thanks #{c.name}! #{nil} is waiting you at #{c.datestamp}.</div>"
+	@c = Client.new params[:client]
+	if @c.save
+		erb "<div class='alert alert-success'>Thanks #{@c.name}! #{nil} is waiting you at #{@c.datestamp}.</div>"
+	else
+		# @error = "Ошибка. #{c.errors.full_messages}"
+		@error = "Ошибка. #{@errors_list[@c.errors.full_messages.first]}"
+		erb :visit
+	end
 end
 
 get '/contacts' do
