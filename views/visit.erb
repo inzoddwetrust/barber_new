@@ -6,17 +6,17 @@
 
     <div class="form-group">
       <label>Your name</label>
-      <input name="client[name]" type="text" class="form-control" placeholder="Name">
+      <input name="client[name]" type="text" class="form-control" value="<%=@c.name%>" placeholder="Name">
     </div>
 
     <div class="form-group">
       <label>Contact phone number</label>
-      <input name="client[phones]" type="text" class="form-control" placeholder="Phone">
+      <input name="client[phones]" type="text" class="form-control" value="<%=@c.phones%>" placeholder="Phone">
     </div>
 
     <div class="form-group">
       <label>Date of visit</label>
-      <input id="datetime" name="client[datestamp]" type="text" class="form-control" placeholder="Date and time">
+      <input id="datetime" name="client[datestamp]" type="text" class="form-control" value="<%=@c.datestamp%>" placeholder="Date and time">
     </div>
 
     <!-- <div class="form-group">

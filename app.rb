@@ -32,6 +32,7 @@ get '/' do
 end
 
 get '/visit' do
+		@c = Client.new
 		erb :visit
 end
 
@@ -41,7 +42,6 @@ post '/visit' do
 	if @c.save
 		erb "<div class='alert alert-success'>Thanks #{@c.name}! #{nil} is waiting you at #{@c.datestamp}.</div>"
 	else
-		# @error = "Ошибка. #{c.errors.full_messages}"
 		@error = "Ошибка. #{@errors_list[@c.errors.full_messages.first]}"
 		erb :visit
 	end
