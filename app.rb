@@ -16,6 +16,8 @@ class Master < ActiveRecord::Base
 end
 
 class Contact < ActiveRecord::Base
+	validates :email, {presence: true}
+	validates :message, {presence: true}
 end
 
 before do
@@ -50,7 +52,7 @@ post '/visit' do
 
 	@c = Client.new params[:client]
 	if @c.save
-		erb "<div class='alert alert-success'>Thanks #{@c.name}! #{nil} is waiting you at #{@c.datestamp}.</div>"
+		erb "<div class='alert alert-success'>Thanks #{@c.name}! #{@c.barber} is waiting you at #{@c.datestamp}.</div>"
 	else
 		@error = "Ошибка. #{@errors_list[@c.errors.full_messages.first]}"
 		erb :visit
@@ -58,14 +60,16 @@ post '/visit' do
 end
 
 get '/contacts' do
+	@cont = Contact.new
 	erb :contacts
 end
 
 post '/contacts' do
-	@email = params[:email]
-	@message = params[:message]
-
-	Contact.create :email => @email, :message => @message
-
-	erb "<div class='alert alert-success'>Thanks! We will answer you to #{@email} soon.</div>"
+	@cont = Contact.new params[:contact]
+	if @cont.save
+		erb "<div class='alert alert-success'>Thanks! We will answer you to #{@cont.email} soon.</div>"
+	else
+		@error = "Ошибка"
+		erb :contacts
+	end
 end
